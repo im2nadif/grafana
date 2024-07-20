@@ -18,8 +18,8 @@ jobs:
       run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     
     - name: Build the Docker image
-      run: make build-docker-full-ubuntu
-
+      run: make build-docker-full
+      
     - name: List Docker images
       run: docker images
       
