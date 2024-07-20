@@ -10,7 +10,15 @@ jobs:
     
     steps:
     - uses: actions/checkout@v4
-
+    
+    - name: Login to Docker Hub
+      env:
+        DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+      run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     
     - name: Build the Docker image
-      run: make build-docker-full
+      run: make build-docker-full-ubuntu
+    
+    - name: Push to Dockerhub
+      run: docker push imnadif/vestrack:latest
